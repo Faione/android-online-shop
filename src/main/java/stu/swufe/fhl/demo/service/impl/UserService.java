@@ -122,4 +122,27 @@ public class UserService implements IUserService {
 
         return ServerResponse.createServerResponseBySuccess();
     }
+
+    @Override
+    public ServerResponse updateUserInfoLogic(User user) {
+        int sql_check;
+        // 1.判断输入参数是否为空
+        if(user==null){
+            return ServerResponse.createServerResponseByFailure(ResponseCode.PARAM_EMPTY.getCode(), ResponseCode.PARAM_EMPTY.getMsg());
+        }
+
+        // 2.判断是否更新成功
+        sql_check = userMapper.updateByPrimaryKeySelective(user);
+
+        if(sql_check==0){
+            return ServerResponse.createServerResponseByFailure(ResponseCode.UPDATE_FAILURE.getCode(), ResponseCode.UPDATE_FAILURE.getMsg());
+        }
+
+        // 3.获得最新的用户信息，并向前端返回
+        User updatedUser = userMapper.selectByPrimaryKey(user.getId());
+
+        UserVO userVO = convertToVO(updatedUser);
+
+        return ServerResponse.createServerResponseBySuccess(userVO);
+    }
 }

@@ -13,5 +13,17 @@ public interface IUserService {
      */
     public ServerResponse loginLogic(String username, String password);
 
+    /**
+     * 注册
+     * @param user
+     * @return
+     */
     public ServerResponse registerLogic(User user);
+
+    /**
+     * 修改用户信息
+     * @param user
+     * @return
+     */
+    public ServerResponse updateUserInfoLogic(User user);
 }

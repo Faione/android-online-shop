@@ -10,11 +10,12 @@ public enum ResponseCode {
     ANSWER_EMPTY(9,"密保问题不能为空"),
 
     USERNAME_NOT_EXIST(5,"用户名不存在"),
-    EMAIL_NOT_EXIST(10,"邮箱不存在"),
+    NEED_LOGIN(10,"未登录"),
     USERNAME_EXIST(12,"用户名已经存在"),
     EMAIL_EXIST(13, "邮箱已经存在"),
     PASSWORD_ERROR(6,"密码错误"),
-    REGISTER_FAILURE(11,"注册失败")
+    REGISTER_FAILURE(11,"注册失败"),
+    UPDATE_FAILURE(14, "修改失败")
     ;
 
     private int code;
